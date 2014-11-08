@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  linking_id: 1
+  linking_type: MyString
+  url: MyText
+  name: MyText
+  fb_created_time: MyText
+  is_love?: false
+  is_later?: false
+
+two:
+  linking_id: 1
+  linking_type: MyString
+  url: MyText
+  name: MyText
+  fb_created_time: MyText
+  is_love?: false
+  is_later?: false
