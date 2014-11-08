@@ -1,0 +1,68 @@
+<script type="text/javascript">
+  var list = ['stackoverflow','developer.chrome.com']
+  $(document).ready(function(){
+  	$('.link').on('click', function(e){
+      e.preventDefault;
+      var link = $(this).data('link');
+      // alert(link);
+      if(link.indexOf('www.slideshare.net') > 0){
+      	var url = link.split('-');
+      	var tail = url[url.length - 1];
+      	link = "//www.slideshare.net/slideshow/embed_code/"+tail
+      	alert("有些 slideshare 會無法正常顯示，若遇到時可以點選在新頁面開啓試試看")
+      } else if(link.indexOf('www.youtube.com') > 0) {
+      	var url = link.split('=');
+      	var tail = url[url.length - 1];
+      	link = "//www.youtube.com/embed/"+tail
+      	$('#iframe').removeAttr('sandbox')
+      } else if (link.indexOf('www.ted.com') > 0) {
+      	var url = link.split('/');
+      	var tail = url[url.length - 1];
+      	link = "https://embed-ssl.ted.com/talks/"+tail+".html"
+      	$('#iframe').removeAttr('sandbox')
+      	alert("有些 TED 會無法正常顯示，若遇到時可以點選在新頁面開啓試試看")
+      } else {
+      	var i = 0;
+      	while( i < list.length ){
+      		if(link.indexOf(list[i]) > 0){
+      			alert(list[i]+"不支援鑲嵌網頁，請觀看新視窗");
+      			window.open(link);
+      			i += list.length;
+      		} else {
+      			i++;
+      		}
+      	}
+      	$('#iframe').attr('sandbox','');
+      }
+      $('#iframe').attr('src',link);
+    });
+  });
+</script>
+
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+<div style="height: 15.7vh; width: 100%; overflow: auto; background-color: #eeeeee; margin: 0 0;">
+	<table>
+		<thead>
+			<tr>
+				<th> # </th>
+				<th>名稱</th>
+				<th>儲存日期</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @links.each do |link| %>
+			  <tr>
+			  	<td><%= link.id %></td>
+			  	<td class="link" style="color: blue; background-color: yellow; border-bottom: 1px solid black;" data-link="<%= link.url %>">
+			  		<%= truncate(link.name, length: 80) %>
+			  		<%#= link_to truncate(link.name, length: 80), '#' %>
+			  	</td>
+	        <td><%= link.fb_created_time %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<iframe id="iframe" src="" style="width:100%; height: 640px; margin: 0 0;" sandbox=""/>
