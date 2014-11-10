@@ -1,0 +1,139 @@
+<script type="text/javascript">
+
+  // error handling for iframe
+  var list = ['stackoverflow','developer.chrome.com']
+
+  var showLink = function(source){
+    var link = $(source).data('link');
+    var num = $(source).data('number');
+    if(link.indexOf('www.slideshare.net') > 0){
+      var url = link.split('-');
+      var tail = url[url.length - 1];
+      link = "//www.slideshare.net/slideshow/embed_code/"+tail;
+      $('#iframe').removeAttr('sandbox');
+      alert("有些 slideshare 會無法正常顯示，若遇到時可以點選在新頁面開啓試試看");
+    } else if(link.indexOf('www.youtube.com') > 0) {
+      var url = link.split('=');
+      var tail = url[url.length - 1];
+      link = "//www.youtube.com/embed/"+tail
+      $('#iframe').removeAttr('sandbox')
+    } else if (link.indexOf('www.ted.com') > 0) {
+      var url = link.split('/');
+      var tail = url[url.length - 1];
+      link = "https://embed-ssl.ted.com/talks/"+tail+".html"
+      $('#iframe').removeAttr('sandbox')
+      alert("有些 TED 會無法正常顯示，若遇到時可以點選在新頁面開啓試試看")
+    } else {
+      var i = 0;
+      while( i < list.length ){
+        if(link.indexOf(list[i]) > 0){
+          alert(list[i]+"不支援鑲嵌網頁，請觀看新視窗");
+          window.open(link);
+          i += list.length;
+        } else {
+          i++;
+        }
+      }
+      $('#iframe').attr('sandbox','');
+    }
+    $('#iframe').attr('src',link).data('number',num);
+  };
+
+  $(document).ready(function(){
+
+    // adjusting iframe size & show 1st link
+    var totalHeight = window.innerHeight;
+    var info = $('.nav').height();
+    var setIframe = function(){
+      setInterval(
+        function(){
+          totalHeight = window.innerHeight;
+          if($('.links').css('display') == 'none'){
+            info = $('.nav').height();
+          } else {
+            info = $('.nav').height() + $('.links').height();
+          }
+          $('#iframe').css('height',String( totalHeight - info - 5.0001 )+"px");
+        },800
+      );
+    };
+    setIframe();
+    showLink('.link1');
+
+    // dashboard controll
+    $('.cir').on('click','#cross',function(){
+      info = $('.nav').height() + $('.links').height();
+      $('#cross').toggleClass('rotate');
+      $('.links').slideToggle(600);
+      if($('.nav').css('text-align') == 'center'){
+        $('.nav').css('text-align','left');
+        $('.nav').append('<div class="btn next">下一篇</div>');
+        $('.nav').append('<div class="btn prev">上一篇</div>');
+      } else {
+        $('.nav').css('text-align','center');
+        $('.next').remove();
+        $('.prev').remove();
+      }
+    });
+
+    $('.cir').on('click','#open',function(){
+      var link = $('#iframe').attr('src');
+      window.open(link, '_blank');
+    });
+
+    $('.nav').on('click','.next',function(){
+      var nextNum = $('#iframe').data('number') + 1;
+      var link = $('.link' + nextNum);
+      if(link.data('number') == undefined){
+        alert("目前顯示的是最後一筆");
+      } else {
+        showLink(link);
+      }
+    });
+    $('.nav').on('click','.prev',function(){
+      var prevNum = $('#iframe').data('number') - 1;
+      var link = $('.link' + prevNum);
+      if(link.data('number') == undefined){
+        alert("目前顯示的是第一筆");
+      } else {
+        showLink(link);
+      }
+    });
+
+    $('.link').on('click', function(e){
+      e.preventDefault;
+      showLink(this);
+    });
+  });
+</script>
+
+<div class="nav">
+  Welcome, <%= current_user.name %>
+  <div class="cir"><div id="cross"></div></div>
+  <div class="cir"><div id="open"></div></div>
+  <div class="btn">
+    <%= link_to "登出", destroy_user_session_path, method: :delete %>
+  </div>
+  <div class="btn next"><a>下一篇</a></div>
+  <div class="btn prev"><a>上一篇</a></div>
+</div>
+<div class="links">
+	<table>
+		<tbody>
+      <% counter = 1 %>
+			<% @links.each do |link| %>
+        <tr>
+          <td><%= counter %></td>
+			  	<td class="link link<%= counter %>" data-link="<%= link.url %>" data-number="<%= counter %>">
+			  		<%= truncate(link.name, length: 70) %>
+			  	</td>
+	        <td><%= link.fb_created_time %></td>
+          <td><%= link_to "開新分頁", link.url, { target: "_blank" }%></td>
+	      </tr>
+        <% counter+=1 %>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<iframe id="iframe" src="" style="width:100%; height: 640px; margin: 0 0;" data-number="" sandbox=""/>
