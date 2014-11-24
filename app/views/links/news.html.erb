@@ -39,9 +39,13 @@
   });
 </script>
 
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<ul>
+  <div>TEST</div>
+  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+</ul>
+<%#= link_to "Sign out", destroy_user_session_path, method: :delete %>
 
-<div style="height: 15.7vh; width: 100%; overflow: auto; background-color: #eeeeee; margin: 0 0;">
+<div style="height: 15.7vh; width: 100%; overflow: auto; background-color: #eeeeee; margin: 0 0; font-size: 1em;">
 	<table>
 		<thead>
 			<tr>

@@ -1,8 +1,18 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<% if current_user %>
-  <%= link_to "download", download_path %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>	
-<% end %>
+<div class="home">
+	<div class="slogan">連結輕鬆遍覽</div>
+	<div class="subtitle">讓你觀看不再遺漏、輕鬆快閱</div>
+  <br>
+	<% if current_user %>
+	  <%#= link_to "news", links_news_path %>
+	  <div class="hp-btn start">
+	  	<%= link_to '開始瀏覽', links_collection_path, class: 'cnt' %>
+	  </div>
+	<% else %>
+	  <div class="hp-btn">
+	    <%= link_to user_omniauth_authorize_path(:facebook) do %>
+        <%= image_tag('fb-login.png', class: 'login') %>
+	    <% end %>
+	  </div>
+	<% end %>
+<div>
+
