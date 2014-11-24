@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  link_id: 1
+  like_count: MyString
+  comment_count: MyString
+  share_count: MyString
+  publisher: MyText
+  publish_id: MyText
+  hot_score: 1
+
+two:
+  user_id: 1
+  link_id: 1
+  like_count: MyString
+  comment_count: MyString
+  share_count: MyString
+  publisher: MyText
+  publish_id: MyText
+  hot_score: 1

@@ -1,3 +1,4 @@
 class Link < ActiveRecord::Base
-  belongs_to :linking, polymorphic: true
+  has_many :user_link_statuses, dependent: :destroy
+  has_many :subscription_links, dependent: :destroy
 end

@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  fb_id: 1
   name: MyString
+  url: MyText
+  fb_created_time: 2014-11-24 20:49:35
 
 two:
+  fb_id: 1
   name: MyString
+  url: MyText
+  fb_created_time: 2014-11-24 20:49:35

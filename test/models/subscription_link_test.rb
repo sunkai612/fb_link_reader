@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CaptionTest < ActiveSupport::TestCase
+class SubscriptionLinkTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

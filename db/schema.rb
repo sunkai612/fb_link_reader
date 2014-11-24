@@ -11,32 +11,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108074042) do
+ActiveRecord::Schema.define(version: 20141124130827) do
 
-  create_table "captions", force: true do |t|
-    t.integer  "category_id"
-    t.string   "root_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "categories", force: true do |t|
+  create_table "collections", force: true do |t|
+    t.integer  "fb_id"
     t.string   "name"
+    t.text     "url"
+    t.datetime "fb_created_time"
+    t.boolean  "is_read?"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "links", force: true do |t|
-    t.integer  "linking_id"
-    t.string   "linking_type"
     t.text     "url"
     t.text     "name"
-    t.text     "fb_created_time"
-    t.boolean  "is_love?"
-    t.boolean  "is_later?"
+    t.datetime "fb_created_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_news?"
+  end
+
+  create_table "show_settings", force: true do |t|
+    t.boolean  "show_read?",  default: false
+    t.integer  "show_amount", default: 100
+    t.integer  "load_amount", default: 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscribed_objs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "subscription_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscription_links", force: true do |t|
+    t.integer  "subscription_id"
+    t.integer  "link_id"
+    t.integer  "fb_id"
+    t.string   "like_count"
+    t.string   "comment_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "fb_id"
+    t.string   "fb_name"
+    t.string   "type"
+    t.integer  "belonged_links"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_link_statuses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "link_id"
+    t.string   "like_count"
+    t.string   "comment_count"
+    t.string   "share_count"
+    t.text     "publisher"
+    t.text     "publish_id"
+    t.boolean  "is_read?",      default: false
+    t.boolean  "is_page?",      default: false
+    t.boolean  "is_ppl?",       default: false
+    t.integer  "hot_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -57,6 +99,9 @@ ActiveRecord::Schema.define(version: 20141108074042) do
     t.string   "name"
     t.string   "image"
     t.string   "token"
+    t.datetime "collection_update"
+    t.datetime "subscribed_page_update"
+    t.datetime "subscribed_ppl_update"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

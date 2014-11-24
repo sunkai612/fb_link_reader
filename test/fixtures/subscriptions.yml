@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fb_id: 1
+  fb_name: MyString
+  type: 
+  belonged_links: 1
+
+two:
+  fb_id: 1
+  fb_name: MyString
+  type: 
+  belonged_links: 1
