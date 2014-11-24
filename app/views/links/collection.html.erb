@@ -77,7 +77,8 @@
     });
 
     $('.cir').on('click','#open',function(){
-      var link = $('#iframe').attr('src');
+      var num = $('#iframe').data('number');
+      var link = $('.link'+num).data('link');
       window.open(link, '_blank');
     });
 
@@ -108,27 +109,30 @@
 </script>
 
 <div class="nav">
-  Welcome, <%= current_user.name %>
+  <div class="btn left md">Welcome <%= current_user.name %></div>
+  <div class="btn left lighten pushable">收藏</div>
+  <div class="btn left so-tiny">|</div>
+  <div class="btn left lightable pushable">新聞</div>
   <div class="cir"><div id="cross"></div></div>
   <div class="cir"><div id="open"></div></div>
-  <div class="btn">
+  <div class="btn pushable">
     <%= link_to "登出", destroy_user_session_path, method: :delete %>
   </div>
-  <div class="btn next"><a>下一篇</a></div>
-  <div class="btn prev"><a>上一篇</a></div>
+  <div class="btn next pushable"><a>下一篇</a></div>
+  <div class="btn prev pushable"><a>上一篇</a></div>
 </div>
 <div class="links">
 	<table>
 		<tbody>
       <% counter = 1 %>
 			<% @links.each do |link| %>
-        <tr>
-          <td><%= counter %></td>
-			  	<td class="link link<%= counter %>" data-link="<%= link.url %>" data-number="<%= counter %>">
-			  		<%= truncate(link.name, length: 70) %>
-			  	</td>
-	        <td><%= link.fb_created_time %></td>
-          <td><%= link_to "開新分頁", link.url, { target: "_blank" }%></td>
+        <t>
+            <td><%= counter %></td>
+  			  	<td class="link link<%= counter %>" data-link="<%= link.url %>" data-number="<%= counter %>">
+  			  		<%= truncate(link.name, length: 70) %>
+  			  	</td>
+  	        <td><%= link.fb_created_time %></td>
+            <td><%= link_to "開新分頁", link.url, { target: "_blank" }%></td>
 	      </tr>
         <% counter+=1 %>
 	    <% end %>
