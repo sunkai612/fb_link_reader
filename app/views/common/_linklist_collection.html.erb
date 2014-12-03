@@ -1,0 +1,23 @@
+<div class="links">
+  <table>
+    <tbody>
+      <% counter = 1 %>
+      <% @collections.each do |collection| %>
+        <tr id="<%= collection.id %>">
+          <td> &nbsp <%= check_box_tag('collection',collection.id) %> &nbsp </td>
+          <td><%= counter %> &nbsp </td>
+          <td class="link link<%= counter %>" data-link="<%= collection.url %>" data-number="<%= counter %>">
+            <%= truncate(collection.name, length: 70) %>
+          </td>
+          <td>
+            <%= collection.fb_created_time.in_time_zone("Taipei").strftime('%Y/%m/%d %H:%M') %>
+          </td>
+          <td><%= link_to "開新分頁", collection.url, { target: "_blank" }%></td>
+        </tr>
+        <% counter+=1 %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<iframe id="iframe" src="" data-number="" sandbox=""/>

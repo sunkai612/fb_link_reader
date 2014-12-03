@@ -1,0 +1,22 @@
+<div class="sidebar">
+  <ul class="sidebar-nav">
+    <br>
+    <li class="sidebar-btn unpushable">welcome, <%= current_user.name %></li>
+    <br>
+
+    <%= link_to subscribed_path do %><li class="sidebar-btn pushable">訂閱名單</li><% end %>
+    <br>
+    <%= link_to collections_path do %><li class="sidebar-btn pushable">我的收藏</li><% end %>
+    <%= link_to sharings_load_path do %><li class="sidebar-btn pushable">最新分享</li><% end%>
+    <%= link_to '#' do %><li class="sidebar-btn pushable">分類瀏覽</li><% end %>
+    <br>
+    <%= link_to sharings_readed_path do %><li class="sidebar-btn pushable">已讀清單</li><% end %>
+    <br>
+    <%= link_to '#' do %><li class="sidebar-btn pushable">偏好設定</li><% end %>
+    <br>
+    <%= link_to '#' do %><li class="sidebar-btn pushable">錯誤回報</li><% end %>
+    <%= link_to '#' do %><li class="sidebar-btn pushable">功能建議</li><% end %>
+    <br>
+    <%= link_to destroy_user_session_path, method: :delete do %><li class="sidebar-btn pushable">登出</li><% end %>
+  </ul>
+</div>

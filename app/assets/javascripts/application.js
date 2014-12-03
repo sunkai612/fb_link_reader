@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  navbar_controll();
+});
+
+$(document).on('page:load',function(){
+  navbar_controll();
+});
