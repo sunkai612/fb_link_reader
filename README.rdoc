@@ -1,28 +1,39 @@
-== README
+== How to use ==
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Clone this project
 
-Things you may want to cover:
+git clone https://github.com/sunkai612/fb_link_reader.git
+or
+git clone https://github.com/sunkai612/fb_link_reader.git whatever_name_you_want
 
-* Ruby version
+2. Setup a fb app
 
-* System dependencies
+go to:
+https://developers.facebook.com/
+app -> add a new app -> website -> pick a name u like -> create new fb app id -> skip quick start
 
-* Configuration
+go to:
+inside your app -> settings -> basic
+  change "app domains" to "localhost"
+  add platform -> website -> site url: "http://localhost:3000/" -> save change
+inside your app -> settings -> advanced
+  security -> Valid OAuth redirect URIs -> http://localhost:3000/
 
-* Database creation
+3. Fill in the fb app id & secrect
 
-* Database initialization
+go to:
+inside your app -> dashboard -> copy "App ID" & "App Secret"
+open:
+~/config/initializers/devise.rb
+replace line 13 "ENV_APP_ID, ENV_APP_SECRET" with your own "App ID" & "App Secret"
 
-* How to run the test suite
+4. Final Setup
 
-* Services (job queues, cache servers, search engines, etc.)
+inside the cloned project file
+  bundle install
+  rake db:migrate
+  rails s
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+5. Start using
+  have fun :)
+  and open an issue if you have met any problem or want a new feature
