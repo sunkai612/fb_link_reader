@@ -1,0 +1,14 @@
+<div class="nav">
+  <div class="cir left"><div id="reload"></div></div>
+  <div class="btn left title unpushable"><%= content %></div>
+  <div class="btn left prev pushable lightable">上一篇</div>
+  <div class="cir rotate"><div id="cross"></div></div>
+  <div class="cir"><div id="open"></div></div>
+  <% if content == '我的收藏' %>
+    <div class="cir"><div id="delete"></div></div>
+  <% else %>
+    <div class="cir"><div id="save"></div></div>
+  <% end %>
+  <div class="cir"><div id="mark-as-read"></div></div>
+  <div class="btn next pushable lightable">下一篇</div>
+</div>

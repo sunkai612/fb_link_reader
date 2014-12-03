@@ -1,3 +1,54 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.home {
+  height: 100vh;
+  width: 100vw;
+  background: url('home-bg.jpg') center center no-repeat;
+  background-size: 100vw auto;
+}
+
+.slogan {
+  padding-top: 5%;
+  text-align: center;
+  color: #663300;
+  font: 5em/1.5em bold sans-serif;
+}
+
+.login {
+  display: block;
+  margin: 2% auto;
+  height: 60px;
+  width: 325px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #9e6429;
+  font: 2em/1.5em bold sans-serif;
+}
+
+a.cnt {
+  display: block;
+  height: 60px;
+  width: 325px;
+  color: #ffb366;
+  font: 2em/60px bold sans-serif;;
+}
+
+a.cnt:hover {
+  color: hsl(30, 100%, 85%);
+}
+
+.hp-btn {
+  margin: 2% auto;
+  height: 60px;
+  width: 325px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.start {
+  background-color: #663300;
+}

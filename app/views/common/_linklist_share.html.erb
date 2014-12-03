@@ -1,0 +1,28 @@
+<div class="links">
+  <table>
+    <tbody>
+      <% counter = 1 %>
+      <% time = 0 %>
+      <% contents.each do |link_status| %>
+        <tr id="<%= link_status.link.id %>">
+          <td> &nbsp <%= check_box_tag('sharelink',link_status.id) %> &nbsp </td>
+          <td><%= counter %> &nbsp </td>
+          <td class="link link<%= counter %>" data-link="<%= link_status.link.url %>" data-number="<%= counter %>">
+            <%= truncate(link_status.link.name, length: 60) %>
+          </td>
+          <td>
+            <%= link_status.link.fb_created_time.in_time_zone("Taipei").strftime('%Y/%m/%d %H:%M') %>
+            <% time = link_status.updated_at %>
+          </td>
+          <td><%= link_to "開新分頁", link_status.link.url, { target: "_blank" }%></td>
+        </tr>
+        <% counter+=1 %>
+      <% end %>
+      <tr>
+        <td id="load-more" colspan="5" data-time="<%= time %>" data-type="<%= data_type %>" data-counter="<%= counter %>">載入更多</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<iframe id="iframe" src="" data-number="" sandbox=""/>

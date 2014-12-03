@@ -1,0 +1,54 @@
+<%= render 'common/sidebar' %>
+<!-- add into subscription -->
+<div class="add_subscription">
+  <h3>訂閱專頁或對象：</h3>
+  <%= text_field_tag("new_subscribed", nil, placeholder: "在此貼上照片網址連結") %>
+  <%= button_tag("訂閱") %>
+  <h5>*請前往欲訂閱專頁、對象的相簿，任選一張在相簿內的「照片」，將其網址貼入上方輸入框內，並點擊訂閱</h5>
+</div>
+<div class="subscribed_list">
+  <h3>訂閱專頁</h3>
+  <!-- reload subscribed pages from fb -->
+  <% if @subscribed_pages.length == 0 %>
+    <h5>目前沒有訂閱任何專頁</h5>
+  <% else %>
+    <div>
+      <table>
+        <tbody>
+          <% counter = 1 %>
+          <% @subscribed_pages.each do |page| %>
+            <tr>
+              <td><%= counter %></td>
+              <td><%= link_to(truncate( page.fb_name, length: 20), "https://www.facebook.com/#{page.fb_id.to_s}", { target: "_blank" }) %></td>
+              <td><a href="#">取消訂閱</a></td> <!-- delete button -->
+            </tr>
+            <% counter += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+
+<div class="subscribed_list">
+  <h3>訂閱對象</h3>
+  <% if @subscribed_ppl.length == 0 %>
+    <h5>目前沒有訂閱任何對象</h5>
+  <% else %>
+    <div>
+      <table>
+        <tbody>
+          <% counter = 1 %>
+          <% @subscribed_ppl.each do |person| %>
+            <tr>
+              <td><%= counter %></td>
+              <td><%= link_to(truncate( person.fb_name, length: 20), "https://www.facebook.com/#{person.fb_id.to_s}", { target: "_blank" }) %></td>
+              <td><a href="#">取消訂閱</a></td> <!-- delete button -->
+            </tr>
+            <% counter += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

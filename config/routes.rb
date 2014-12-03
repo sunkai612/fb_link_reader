@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   post "collections/mark_as_read", to: "collections#mark_as_read"
   post "collections/destroy", to: "collections#destroy"
 
-  sharings_get_actions = ["load","subscribed","pages","people","next","readed"]
-  sharings_post_actions = ["mark_as_read","save_to_collection"]
+  sharings_get_actions = ["load","subscribed","pages","people","readed"]
+  sharings_post_actions = ["next","mark_as_read","save_to_collection"]
 
   sharings_get_actions.each do |sharing_get_action|
     get "sharings/#{sharing_get_action}", to: "sharings##{sharing_get_action}"

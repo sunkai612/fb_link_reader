@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124130827) do
+ActiveRecord::Schema.define(version: 20141201121344) do
 
   create_table "collections", force: true do |t|
     t.integer  "fb_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141124130827) do
     t.boolean  "is_read?"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "links", force: true do |t|
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141124130827) do
     t.integer  "load_amount", default: 100
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "subscribed_objs", force: true do |t|
@@ -59,7 +61,7 @@ ActiveRecord::Schema.define(version: 20141124130827) do
   create_table "subscriptions", force: true do |t|
     t.integer  "fb_id"
     t.string   "fb_name"
-    t.string   "type"
+    t.string   "fb_type"
     t.integer  "belonged_links"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -73,7 +75,7 @@ ActiveRecord::Schema.define(version: 20141124130827) do
     t.string   "share_count"
     t.text     "publisher"
     t.text     "publish_id"
-    t.boolean  "is_read?",      default: false
+    t.boolean  "read",          default: false
     t.boolean  "is_page?",      default: false
     t.boolean  "is_ppl?",       default: false
     t.integer  "hot_score"
