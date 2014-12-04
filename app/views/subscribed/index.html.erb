@@ -19,7 +19,7 @@
           <% @subscribed_pages.each do |page| %>
             <tr>
               <td><%= counter %></td>
-              <td><%= link_to(truncate( page.fb_name, length: 20), "https://www.facebook.com/#{page.fb_id.to_s}", { target: "_blank" }) %></td>
+              <td><%= link_to(truncate( page.fb_name, length: 20), "https://www.facebook.com/#{page.fb_id.to_s}", { target: "_blank", class: "subscribed"}) %></td>
               <td><a href="#">取消訂閱</a></td> <!-- delete button -->
             </tr>
             <% counter += 1 %>
@@ -42,7 +42,7 @@
           <% @subscribed_ppl.each do |person| %>
             <tr>
               <td><%= counter %></td>
-              <td><%= link_to(truncate( person.fb_name, length: 20), "https://www.facebook.com/#{person.fb_id.to_s}", { target: "_blank" }) %></td>
+              <td><%= link_to(truncate( person.fb_name, length: 20), "https://www.facebook.com/#{person.fb_id.to_s}", { target: "_blank", class: "subscribed"}) %></td>
               <td><a href="#">取消訂閱</a></td> <!-- delete button -->
             </tr>
             <% counter += 1 %>

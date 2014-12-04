@@ -110,7 +110,7 @@ var navbar_controll = function(){
     });
   };
 
-  var onClickShowLink = function(){
+  var onClickShowLink = function(controller){
     $('.link').on('click', function(){
       showLink(this);
 
@@ -118,7 +118,7 @@ var navbar_controll = function(){
       var selected = [ readed_id ];
       $('tr#'+ $(this).parent().attr('id') +' td').css('background-color','#555555');
 
-      $.ajax('mark_as_read',{
+      $.ajax(controller+'/mark_as_read',{
         type: 'POST',
         data: {"mark_as_read_id": selected },
         success: function(response){
@@ -198,7 +198,7 @@ var navbar_controll = function(){
   };
 
   var removeSubscription = function(){
-    $('a').on('click',function(e){
+    $('a').on('click','subscribed',function(e){
       e.preventDefault();
       var unsubscribed_name = $(this).parent().prev().children().text()
       $.ajax('subscribed/destroy',{
@@ -225,7 +225,7 @@ var navbar_controll = function(){
     deleteFromCollection();
     openInNewTab();
     openLinkList();
-    onClickShowLink();
+    onClickShowLink('collections');
     loadMore();
   } else if($('.title').text() == "最新分享"){
     initialize_iframe();
@@ -237,7 +237,7 @@ var navbar_controll = function(){
     saveToCollection();
     openInNewTab();
     openLinkList();
-    onClickShowLink();
+    onClickShowLink('sharings');
     loadMore();
   } else if($('.title').text() == "已讀清單"){
     initialize_iframe();
@@ -249,7 +249,7 @@ var navbar_controll = function(){
     saveToCollection();
     openInNewTab();
     openLinkList();
-    onClickShowLink();
+    onClickShowLink('sharings');
     loadMore();
   } else if($('.add_subscription h3').text() == "訂閱專頁或對象："){
     addSubscription();
