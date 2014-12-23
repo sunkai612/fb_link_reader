@@ -5,8 +5,8 @@
 	<% if current_user %>
 	  <%#= link_to "news", links_news_path %>
 	  <div class="hp-btn start">
-	  	<%#= link_to '開始瀏覽', subscribed_load_likes_path, class: 'cnt' %>
 	  	<%= link_to '開始瀏覽', subscribed_load_likes_path, class: 'cnt' %>
+	  	<%#= link_to '開始瀏覽', sharings_subscribed_path, class: 'cnt' %>
 	  </div>
 	<% else %>
 	  <div class="hp-btn">

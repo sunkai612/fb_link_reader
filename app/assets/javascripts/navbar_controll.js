@@ -122,7 +122,7 @@ var navbar_controll = function(){
         type: 'POST',
         data: {"mark_as_read_id": selected },
         success: function(response){
-          alert('success!');
+          // alert('success!');
         },
         error: function(request, errorType, errorMessage){
           alert(errorType + ': ' + errorMessage);
